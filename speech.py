@@ -6,7 +6,7 @@ import os
 import random
 from gtts import gTTS
 import playsound
-#from google.cloud import texttospeech
+
 
 
 r = sr.Recognizer()    #for recognizing the speech
@@ -28,47 +28,17 @@ def record_audio(ask = False):
 
 def speak(audio_string):
     tts = gTTS(text = audio_string, lang = 'en')
-    #client  = texttospeech.TextToSpeechClient()
-    
-    #synthesis_input = texttospeech.SynthesisInput(ssml=audio_string)
-
-
-    #voice = texttospeech.VoiceSelectionParams(
-    #    language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.MALE
-    #)
-
-    # Selects the type of audio file to return
-    #audio_config = texttospeech.AudioConfig(
-    #    audio_encoding=texttospeech.AudioEncoding.MP3
-    #)
-
-    # Performs the text-to-speech request on the text input with the selected
-    # voice parameters and audio file type
-    #response = client.synthesize_speech(
-    #    input=synthesis_input, voice=voice, audio_config=audio_config
-    #)
-
-    #r  = random.randint(1, 10000000)
-    #outfile = 'audio-' + str(r)
-
-    # Writes the synthetic audio to the output file.
-    #with open(outfile, "wb") as out:
-    #    out.write(response.audio_content)
-    #    print("Audio content written to file " + outfile)
-
-
-    #playsound.playsound(outfile)
-    #os.remove(outfile)
-
+ 
     r  = random.randint(1, 10000000)
     audio_file = 'audio-' + str(r) + '.mp3'
     tts.save(audio_file)
+    
     playsound.playsound(audio_file)
     print(audio_string)
     os.remove(audio_file)
 
     
-
+# demo 
 def respond(voice_data):
     if 'what is your name' in voice_data:
         speak('My name is Khaleesi')
